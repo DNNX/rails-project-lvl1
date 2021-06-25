@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module HexletCode
+  # Tag builder for HTML tags.
   module Tag
     def self.build(tag_name, attributes = {})
       tag = +'<'
