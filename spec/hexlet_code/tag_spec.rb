@@ -26,4 +26,9 @@ RSpec.describe HexletCode::Tag do
     expect(described_class.build('label', for: 'email') { 'Email' })
       .to eq('<label for="email">Email</label>')
   end
+
+  it 'handles empty blocks' do
+    expect(described_class.build('form') {}) # rubocop:disable Lint/EmptyBlock
+      .to eq('<form></form>')
+  end
 end
