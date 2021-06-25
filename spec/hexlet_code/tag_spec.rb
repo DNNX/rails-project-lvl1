@@ -1,24 +1,27 @@
 require 'hexlet_code/tag'
 
 RSpec.describe HexletCode::Tag do
-  it 'builds simple tags' do
+  it 'builds simple tag' do
     expect(HexletCode::Tag.build('br')).to eq('<br>')
   end
 
-  it 'builds tags with attributes' do
+  it 'builds tag with an attribute' do
     expect(HexletCode::Tag.build('img', src: 'path/to/image'))
       .to eq('<img src="path/to/image">')
   end
-  #
-# #
 
-# HexletCode::Tag.build('input', type: 'submit', value: 'Save')
-# # <input type="submit" value="Save">
+  it 'builds tag with multiple attributes' do
+    expect(HexletCode::Tag.build('input', type: 'submit', value: 'Save'))
+      .to eq('<input type="submit" value="Save">')
+  end
 
-# # Для парных тегов тело передается как блок
-# HexletCode::Tag.build('label') { 'Email' }
-# # <label>Email</label>
+  it 'has closing tag when a block is given' do
+    expect(HexletCode::Tag.build('label') { 'Email' })
+      .to eq('<label>Email</label>')
+  end
 
-# HexletCode::Tag.build('label', for: 'email') { 'Email' }
-# # <label for="email">Email</label>
+  it 'works with a block and attributes' do
+    expect(HexletCode::Tag.build('label', for: 'email') { 'Email' })
+      .to eq('<label for="email">Email</label>')
+  end
 end

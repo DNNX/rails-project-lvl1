@@ -8,6 +8,7 @@ module HexletCode
         tag << ' ' << name.to_s << '="' << value << '"'
       end
       tag << '>'
+      tag << yield << '</' << tag_name << '>' if block_given?
       tag
     end
   end
