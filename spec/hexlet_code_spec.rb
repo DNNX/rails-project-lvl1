@@ -21,6 +21,7 @@ RSpec.describe HexletCode do # rubocop:disable Metrics/BlockLength TODO: fix lat
       described_class.form_for(user) do |f|
         f.input :name
         f.input :job, as: :text
+        f.input :gender, as: :select, collection: %w[m f]
       end
     end
 
@@ -28,6 +29,10 @@ RSpec.describe HexletCode do # rubocop:disable Metrics/BlockLength TODO: fix lat
       '<form action="#" method="post">' \
       '<input type="text" value="robby" name="name">' \
       '<textarea cols="20" rows="40" name="job">hexlet</textarea>' \
+      '<select name="gender">' \
+      '<option value="m" selected>m</option>' \
+      '<option value="f">f</option>' \
+      '</select>' \
       '</form>'
     end
 
@@ -36,18 +41,3 @@ RSpec.describe HexletCode do # rubocop:disable Metrics/BlockLength TODO: fix lat
     end
   end
 end
-
-# HexletCode.form_for user do |f|
-#   f.input :name
-#   f.input :job, as: :text
-#   f.input :gender, as: :select, collection: %w(m f)
-# end
-
-# <form action="#" method="post">
-#   <input type="text" value="rob" name="name">
-#   <textarea cols="20" rows="40" name="job">hexlet</textarea>
-#   <select name="gender">
-#     <option value="m" selected>m</option>
-#     <option value="f">f</option>
-#   </select>
-# </form>

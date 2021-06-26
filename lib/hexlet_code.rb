@@ -27,10 +27,10 @@ module HexletCode
     def input(name, attributes = {})
       @buf <<
         case attributes[:as]
-        when nil
-          gen_input(name)
-        when :text
-          gen_textarea(name)
+        when nil     then gen_input(name)
+        when :text   then gen_textarea(name)
+        when :select then gen_select(name, attributes)
+        else         raise "Unknown input type: #{attributes[:as].inspect}"
         end
     end
 
@@ -41,6 +41,17 @@ module HexletCode
     def gen_textarea(name)
       Tag.build('textarea', cols: 20, rows: 40, name: name) do
         @model[name]
+      end
+    end
+
+    def gen_select(name, attributes)
+      val = @model[name]
+      Tag.build('select', name: name) do
+        attributes.fetch(:collection).map do |attr|
+          Tag.build('option', value: attr, selected: attr == val) do
+            attr
+          end
+        end.join
       end
     end
 
