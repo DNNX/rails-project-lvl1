@@ -15,7 +15,7 @@ module HexletCode
     def self.write_attributes(buffer, attributes)
       attributes.each do |name, value|
         # TODO: escaping
-        buffer << ' ' << name.to_s << '="' << value << '"'
+        buffer << ' ' << name.to_s << '="' << value.to_s << '"'
       end
     end
   end
