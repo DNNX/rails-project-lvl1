@@ -24,8 +24,24 @@ module HexletCode
       @buf = +''
     end
 
-    def input(name)
-      @buf << Tag.build('input', type: :text, value: @model[name], name: name)
+    def input(name, attributes = {})
+      @buf <<
+        case attributes[:as]
+        when nil
+          gen_input(name)
+        when :text
+          gen_textarea(name)
+        end
+    end
+
+    def gen_input(name)
+      Tag.build('input', type: :text, value: @model[name], name: name)
+    end
+
+    def gen_textarea(name)
+      Tag.build('textarea', cols: 20, rows: 40, name: name) do
+        @model[name]
+      end
     end
 
     def to_s

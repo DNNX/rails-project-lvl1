@@ -2,9 +2,9 @@
 
 require 'hexlet_code'
 
-RSpec.describe HexletCode do
-  let(:user_class) { Struct.new(:name, :job, keyword_init: true) }
-  let(:user) { user_class.new(name: 'robby') }
+RSpec.describe HexletCode do # rubocop:disable Metrics/BlockLength TODO: fix later
+  let(:user_class) { Struct.new(:name, :job, :gender, keyword_init: true) }
+  let(:user) { user_class.new name: 'robby', job: 'hexlet', gender: 'm' }
 
   it 'generates forms with default action' do
     expect(described_class.form_for(user))
@@ -20,15 +20,19 @@ RSpec.describe HexletCode do
     subject(:generated_html) do
       described_class.form_for(user) do |f|
         f.input :name
+        f.input :job, as: :text
       end
     end
 
+    let(:expected_html) do
+      '<form action="#" method="post">' \
+      '<input type="text" value="robby" name="name">' \
+      '<textarea cols="20" rows="40" name="job">hexlet</textarea>' \
+      '</form>'
+    end
+
     it 'generates form with fields' do
-      expect(generated_html).to eq(
-        '<form action="#" method="post">' \
-        '<input type="text" value="robby" name="name">' \
-        '</form>'
-      )
+      expect(generated_html).to eq(expected_html)
     end
   end
 end
