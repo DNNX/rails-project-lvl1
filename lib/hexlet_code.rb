@@ -25,13 +25,21 @@ module HexletCode
     end
 
     def input(name, attributes = {})
-      @buf <<
+      @buf << label(name) <<
         case attributes[:as]
         when nil     then gen_input(name)
         when :text   then gen_textarea(name)
         when :select then gen_select(name, attributes)
         else         raise "Unknown input type: #{attributes[:as].inspect}"
         end
+    end
+
+    def label(name)
+      Tag.build('label', for: name) { humanize(name) }
+    end
+
+    def humanize(text)
+      text.to_s.tr('_', ' ').sub(/\A./, &:upcase)
     end
 
     def submit(value = 'Save')

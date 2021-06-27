@@ -27,8 +27,11 @@ RSpec.describe HexletCode do # rubocop:disable Metrics/BlockLength TODO: fix lat
 
     let(:expected_html) do
       '<form action="#" method="post">' \
+      '<label for="name">Name</label>' \
       '<input type="text" value="robby" name="name">' \
+      '<label for="job">Job</label>' \
       '<textarea cols="20" rows="40" name="job">hexlet</textarea>' \
+      '<label for="gender">Gender</label>' \
       '<select name="gender">' \
       '<option value="m" selected>m</option>' \
       '<option value="f">f</option>' \
