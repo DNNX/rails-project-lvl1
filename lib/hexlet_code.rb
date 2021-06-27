@@ -34,6 +34,10 @@ module HexletCode
         end
     end
 
+    def submit(value = 'Save')
+      @buf << Tag.build('input', type: :submit, value: value, name: :commit)
+    end
+
     def gen_input(name)
       Tag.build('input', type: :text, value: @model[name], name: name)
     end

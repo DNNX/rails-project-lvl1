@@ -40,4 +40,20 @@ RSpec.describe HexletCode do # rubocop:disable Metrics/BlockLength TODO: fix lat
       expect(generated_html).to eq(expected_html)
     end
   end
+
+  it 'renders submit button' do
+    expect(described_class.form_for(user, &:submit)).to eq(
+      '<form action="#" method="post">' \
+      '<input type="submit" value="Save" name="commit">' \
+      '</form>'
+    )
+  end
+
+  it 'renders submit button with provided text' do
+    expect(described_class.form_for(user) do |f|
+      f.submit('Approve')
+    end).to eq('<form action="#" method="post">' \
+      '<input type="submit" value="Approve" name="commit">' \
+      '</form>')
+  end
 end
