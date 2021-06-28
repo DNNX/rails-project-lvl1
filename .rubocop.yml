@@ -4,3 +4,6 @@ require:
 AllCops:
   NewCops: enable
   TargetRubyVersion: 2.7
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'

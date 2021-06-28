@@ -25,7 +25,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'hexlet_code'
+
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new job: 'hexlet', gender: 'f'
+
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job, as: :text
+  f.input :gender, as: :select, collection: %w[f m]
+  f.submit
+end
+
+# <form action="#" method="post">
+#   <label for="name">Name</label>
+#   <input type="text" name="name">
+#
+#   <label for="job">Job</label>
+#   <textarea cols="20" rows="40" name="job">hexlet</textarea>
+#
+#   <label for="gender">Gender</label>
+#   <select name="gender">
+#     <option value="f" selected>f</option>
+#     <option value="m">m</option>
+#   </select>
+#
+#   <input type="submit" value="Save" name="commit">
+# </form>
+```
 
 ## Development
 
@@ -35,4 +63,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet_code.
+Bug reports and pull requests are welcome on GitHub at https://github.com/DNNX/hexlet_code.

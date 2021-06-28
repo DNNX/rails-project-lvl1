@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+require 'simplecov'
+SimpleCov.start do
+  enable_coverage :branch
+
+  # https://www.drupal.org/files/x-all-the-things-template.png
+  minimum_coverage 100
+end
+
 require 'bundler/setup'
 require 'hexlet_code'
 

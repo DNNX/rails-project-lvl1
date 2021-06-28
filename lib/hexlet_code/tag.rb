@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'cgi'
+
 module HexletCode
   # Tag builder for HTML tags.
   module Tag
@@ -25,8 +27,7 @@ module HexletCode
       when true
         buffer << ' ' << name.to_s
       else
-        # TODO: escaping
-        buffer << ' ' << name.to_s << '="' << value.to_s << '"'
+        buffer << ' ' << name.to_s << '="' << CGI.escapeHTML(value.to_s) << '"'
       end
     end
   end

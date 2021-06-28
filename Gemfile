@@ -10,3 +10,7 @@ group :development do
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
 end
+
+group :test do
+  gem 'simplecov', require: false
+end

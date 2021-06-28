@@ -1,4 +1,4 @@
-name: RuboCop
+name: RuboCop and Tests
 
 on: [push, pull_request]
 
@@ -22,5 +22,7 @@ jobs:
     - name: Install gems
       run: |
         bundle install --jobs 4 --retry 3
+    - name: Run Tests
+      run: bundle exec rspec
     - name: Run RuboCop
       run: bundle exec rubocop --parallel
