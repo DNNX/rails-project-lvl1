@@ -4,23 +4,35 @@ require 'cgi'
 
 module HexletCode
   # Tag builder for HTML tags.
-  module Tag
-    def self.build(tag_name, attributes = {})
+  class Tag
+    def self.build(tag_name, attributes = {}, &block)
+      new(tag_name, attributes, &block).to_s
+    end
+
+    def initialize(tag_name, attributes, &block)
+      @tag_name = tag_name
+      @attributes = attributes
+      @content = block
+    end
+
+    def to_s
       buffer = +'<'
-      buffer << tag_name
-      write_attributes(buffer, attributes)
+      buffer << @tag_name
+      write_attributes(buffer)
       buffer << '>'
-      buffer << yield.to_s << '</' << tag_name << '>' if block_given?
+      buffer << @content&.call.to_s << '</' << @tag_name << '>' if @content
       buffer
     end
 
-    def self.write_attributes(buffer, attributes)
-      attributes.each do |name, value|
+    private
+
+    def write_attributes(buffer)
+      @attributes.each do |name, value|
         write_attribute(buffer, name, value)
       end
     end
 
-    def self.write_attribute(buffer, name, value)
+    def write_attribute(buffer, name, value)
       case value
       when false, nil
         # do nothing
