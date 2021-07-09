@@ -42,7 +42,10 @@ module HexletCode
     end
 
     def input_field(name, attributes)
-      input_field_class(attributes[:as])
+      attributes = attributes.dup
+      as = attributes.delete(:as)
+
+      input_field_class(as)
         .new(name, @model[name], attributes)
     end
 
