@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'hexlet_code/select_tag'
+require 'hexlet_code/select'
 
-RSpec.describe HexletCode::SelectTag do
+RSpec.describe HexletCode::Select do
   subject(:rendered_html) { described_class.new(:currency, 'USD', collection: %w[RUB USD EUR]).to_s }
 
   let(:expected_html) do

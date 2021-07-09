@@ -3,8 +3,8 @@
 require 'hexlet_code/tag'
 
 module HexletCode
-  # Label tag builder
-  class LabelTag
+  # Object which represents form label
+  class Label
     def initialize(name)
       @name = name
     end

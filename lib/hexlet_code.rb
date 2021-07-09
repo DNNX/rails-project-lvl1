@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 
-require 'hexlet_code/tag'
-require 'hexlet_code/form_builder'
+require 'hexlet_code/form'
 
 # Module for generating forms.
 module HexletCode
   def self.form_for(model, url: '#')
-    Tag.build('form', action: url, method: :post) do
-      next unless block_given?
-
-      fb = FormBuilder.new(model)
-      yield fb
-      fb
-    end
+    Form.new(model, url: url) do |f|
+      yield f if block_given?
+    end.to_s
   end
 end

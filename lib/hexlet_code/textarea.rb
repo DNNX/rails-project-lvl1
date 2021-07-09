@@ -3,8 +3,8 @@
 require 'hexlet_code/tag'
 
 module HexletCode
-  # Input tag builder
-  class InputTag
+  # Object which represents text area
+  class Textarea
     def initialize(name, value, attributes)
       @name = name
       @value = value
@@ -12,7 +12,9 @@ module HexletCode
     end
 
     def to_s
-      Tag.build('input', type: :text, value: @value, name: @name).to_s
+      Tag.build('textarea', cols: 20, rows: 40, name: @name) do
+        @value
+      end.to_s
     end
   end
 end

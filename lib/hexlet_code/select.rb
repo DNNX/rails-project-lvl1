@@ -3,8 +3,8 @@
 require 'hexlet_code/tag'
 
 module HexletCode
-  # Select tag builder
-  class SelectTag
+  # Object which represents select tag with options
+  class Select
     def initialize(name, value, attributes)
       @name = name
       @value = value
