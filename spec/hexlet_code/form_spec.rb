@@ -14,7 +14,8 @@ RSpec.describe HexletCode::Form do
 
     expect(builder.to_s).to eq \
       '<form action="#" method="post">' \
-      '<label for="full_name">Full name</label><input type="text" value="John Doe" name="full_name">' \
+      '<label for="full_name">Full name</label>' \
+      '<input type="text" value="John Doe" name="full_name">' \
       '</form>'
   end
 
@@ -23,7 +24,8 @@ RSpec.describe HexletCode::Form do
 
     expect(builder.to_s).to eq \
       '<form action="#" method="post">' \
-      '<label for="full_name">Full name</label><textarea cols="20" rows="40" name="full_name">John Doe</textarea>' \
+      '<label for="full_name">Full name</label>' \
+      '<textarea cols="20" rows="40" name="full_name">John Doe</textarea>' \
       '</form>'
   end
 
@@ -32,7 +34,11 @@ RSpec.describe HexletCode::Form do
 
     expect(builder.to_s).to eq \
       '<form action="#" method="post">' \
-      '<label for="currency">Currency</label><select name="currency"><option value="USD" selected>USD</option><option value="EUR">EUR</option></select>' \
+      '<label for="currency">Currency</label>' \
+      '<select name="currency">' \
+      '<option value="USD" selected>USD</option>' \
+      '<option value="EUR">EUR</option>' \
+      '</select>' \
       '</form>'
   end
 
@@ -49,13 +55,12 @@ RSpec.describe HexletCode::Form do
     builder.input(:full_name)
     builder.submit
 
-    expect(builder.to_s).to eq(
+    expect(builder.to_s).to eq \
       '<form action="#" method="post">' \
       '<label for="full_name">Full name</label>' \
       '<input type="text" value="John Doe" name="full_name">' \
       '<input type="submit" value="Save" name="commit">' \
       '</form>'
-    )
   end
 
   it 'fails when input type is unknown' do
