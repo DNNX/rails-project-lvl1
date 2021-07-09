@@ -12,7 +12,7 @@ module HexletCode
     end
 
     def to_s
-      Tag.build('input', type: :text, value: @value, name: @name).to_s
+      Tag.build('input', {type: :text, value: @value, name: @name}.merge(@attributes)).to_s
     end
   end
 end
