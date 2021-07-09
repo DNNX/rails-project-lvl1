@@ -16,30 +16,27 @@ module HexletCode
     end
 
     def to_s
-      buffer = +'<'
-      buffer << @tag_name
-      write_attributes(buffer)
-      buffer << '>'
-      buffer << @content&.call.to_s << '</' << @tag_name << '>' if @content
-      buffer
+      if @content
+        "<#{@tag_name}#{attributes}>#{@content.call}</#{@tag_name}>"
+      else
+        "<#{@tag_name}#{attributes}>"
+      end
     end
 
     private
 
-    def write_attributes(buffer)
-      @attributes.each do |name, value|
-        write_attribute(buffer, name, value)
-      end
+    def attributes
+      @attributes.map(&method(:attribute)).join
     end
 
-    def write_attribute(buffer, name, value)
+    def attribute(name, value)
       case value
       when false, nil
-        # do nothing
+        ''
       when true
-        buffer << ' ' << name.to_s
+        " #{name}"
       else
-        buffer << ' ' << name.to_s << '="' << CGI.escapeHTML(value.to_s) << '"'
+        " #{name}=\"#{CGI.escapeHTML(value.to_s)}\""
       end
     end
   end
