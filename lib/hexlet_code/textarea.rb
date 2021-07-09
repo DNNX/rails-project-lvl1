@@ -12,7 +12,7 @@ module HexletCode
     end
 
     def to_s
-      Tag.build('textarea', {cols: 20, rows: 40, name: @name}.merge(@attributes)) do
+      Tag.build('textarea', { cols: 20, rows: 40, name: @name }.merge(@attributes)) do
         @value
       end.to_s
     end

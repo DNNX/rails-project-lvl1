@@ -6,7 +6,7 @@ AllCops:
   TargetRubyVersion: 2.7
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*_spec.rb'
+    - '**/spec/**/*_spec.rb'
 # We have a few multi-line string constants in tests (html fragments).
 # It would only hurt readability if we squashed multiple lines into one line,
 # just to satisfy the default cop setting.
